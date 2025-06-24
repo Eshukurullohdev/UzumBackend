@@ -3,9 +3,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+    .container_large {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
     * {
         padding: 0;
         margin: 0;
@@ -13,5 +18,280 @@
         font-family: "Inter", sans-serif;
     }
 </style>
-<h1>Nav bar</h1>
-<i class="fa-solid fa-bars"></i>
+  {% load static %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <title>Uzum Market — O‘zbekistondagi Internet-do'kon va Marketpleys</title>
+      <link rel="icon" type="image/svg+xml" href="/static/img/logo.png">
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+      .container_large {
+          max-width: 1140px;
+          margin: 0 auto;
+      }
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Inter', sans-serif;
+      }
+      @media (max-width: 770px) {
+          .container_large {
+              max-width: 1140px;
+              margin: 0 auto;
+          }
+          .yoq {
+              display: none;
+
+          }
+      }
+  </style>
+
+  <nav class="bg-[#f1f3f5] py-2 text-sm text-gray-700 font-medium relative z-50">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+      <div class="flex items-center space-x-6">
+      
+        <div id="cityTrigger" class="flex items-center space-x-1 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-700" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+          </svg>
+          <span id="currentCity" class="text-black">Toshkent</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1 text-gray-600" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+
+        <a href="#" class="hover:text-gray-900 text-gray-500">Topshirish punktlari</a>
+      </div>
+
+      <div  class="yoq  flex items-center space-x-5">
+        <a href="#" class="text-violet-600">Sotuvchi bo‘lish</a>
+        <div class="w-[2px] h-[12px] bg-[#dee0e5]">
+
+        </div>
+        <a href="#" class="text-violet-600">Topshirish punktini ochish</a>
+        <a href="#" class="hover:text-gray-900 text-gray-500">Savol-javob</a>
+        <a href="#" class="hover:text-gray-900 text-gray-500">Buyurtmalarim</a>
+
+
+        
+        <div class="relative" id="languageDropdown">
+          <button onclick="toggleDropdown()" class="flex items-center gap-2 cursor-pointer select-none focus:outline-none">
+            <img id="flagIcon" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg" alt="UZ"
+              class="w-5 h-5 rounded-full object-cover" />
+            <span id="langText" class="text-black font-medium text-sm">O'zbekcha</span>
+            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div id="langMenu"
+            class="hidden absolute right-0 mt-1 w-32 bg-white border rounded shadow z-20">
+            <div onclick="selectLang('ru')"
+              class="px-3 py-1.5 hover:bg-gray-100 cursor-pointer flex items-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" alt="RU"
+                class="w-5 h-5 rounded-full object-cover" />
+              <span class="text-sm">Русский</span>
+            </div>
+            <div onclick="selectLang('uz')"
+              class="px-3 py-1.5 hover:bg-gray-100 cursor-pointer flex items-center gap-2">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg" alt="UZ"
+                class="w-5 h-5 rounded-full object-cover" />
+              <span class="text-sm">O'zbekcha</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+    <div>
+
+        <div id="cityModal" class="hidden fixed  inset-0 z-50 bg-black/50 flex w-full  items-start justify-center">
+            <div class="bg-white mt-24 h-[600px] w-[728px] pl-[20px] pr-[20px]  overflow-y-auto rounded-xl shadow-xl">
+            
+              <div class="flex justify-between sticky top-0 z-50 items-center p-4 bg-white border-b">
+                <h2 class="text-lg font-semibold  font-['Inter'] semibold text=[22px]">Shaharni tanlang</h2>
+                <button id="closeCityModal" class="text-gray-500 text-xl hover:text-black">
+                    <svg data-v-6de7c6fa="" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="ui-icon ">
+                        <rect width="24" height="24" rx="12" fill="#DFE0E2"></rect>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.28033 7.21967C7.98744 6.92678 7.51256 6.92678 7.21967 7.21967C6.92678 7.51256 6.92678 7.98744 7.21967 8.28033L10.9393 12L7.21967 15.7197C6.92678 16.0126 6.92678 16.4874 7.21967 16.7803C7.51256 17.0732 7.98744 17.0732 8.28033 16.7803L12 13.0607L15.7197 16.7803C16.0126 17.0732 16.4874 17.0732 16.7803 16.7803C17.0732 16.4874 17.0732 16.0126 16.7803 15.7197L13.0607 12L16.7803 8.28033C17.0732 7.98744 17.0732 7.51256 16.7803 7.21967C16.4874 6.92678 16.0126 6.92678 15.7197 7.21967L12 10.9393L8.28033 7.21967Z" fill="#4E5155"></path>
+                        </svg>
+                </button>
+              </div>
+          
+              <div class="px-4 py-2 sticky top-[60px] bg-white z-49">
+                
+                <input type="text" id="citySearch" placeholder="Shaharni topish"
+                  class="w-full px-4 py-2 bg-gray-100 rounded-[12px] focus:outline-none focus:ring-2 focus:ring-violet-500" />
+                  
+              </div>
+          
+              <ul id="cityList" class="divide-y">
+  
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Avval</span><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></li>
+
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Ayvalik</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Babalakota</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Baliqchi</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Balta</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bardanko'l</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Baynalmilal</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bekat</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bekobod</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bekobod (Bog'dod tumani)</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beruni</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beruniy (Qiyichirchig tumani)</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beshariq</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beshkapa</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beshkent</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Beshrabod</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bo'jay</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bo'ka</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bo'rbaliq</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+                <li class="city-item flex justify-between items-center px-4 py-3 hover:bg-gray-100 cursor-pointer"><span>Bo'ston</span><svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></li>
+          
+              </ul>
+              
+            </div>
+          </div>
+          
+          <nav class="bg-white border-b border-gray-200 py-2">
+            <div class="max-w-7xl mx-auto px-4 flex items-center justify-between gap-6">
+              <div class="flex items-center gap-4 min-w-max">
+          
+                <div class="flex items-center gap-2">
+
+                <svg class="logo" width="215" height="32" viewBox="0 0 215 32" fill="none" xmlns="http://www.w3.org/2000/svg" data-v-7ea2d6f5="" data-v-8aea42ef=""><rect width="31.9764" height="31.9764" rx="15.9882" fill="#FFFF00" data-v-8aea42ef=""></rect><path d="M3.75192 14.7933C3.27969 12.1152 3.04358 10.7761 3.38441 9.66131C3.68421 8.68069 4.28676 7.82017 5.1057 7.20306C6.0367 6.50149 7.37576 6.26538 10.0539 5.79316L18.144 4.36665C20.8221 3.89442 22.1612 3.65831 23.276 3.99914C24.2566 4.29894 25.1171 4.90149 25.7342 5.72043C26.4358 6.65143 26.6719 7.99049 27.1441 10.6686L28.2537 16.9611C28.7259 19.6393 28.962 20.9783 28.6212 22.0931C28.3214 23.0737 27.7188 23.9343 26.8999 24.5514C25.9689 25.2529 24.6298 25.489 21.9517 25.9613L13.8616 27.3878C11.1835 27.86 9.84441 28.0961 8.72961 27.7553C7.749 27.4555 6.88847 26.8529 6.27136 26.034C5.5698 25.103 5.33368 23.7639 4.86146 21.0858L3.75192 14.7933Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M20.5487 11.0839C21.0311 11.1901 21.4979 11.2808 21.9559 11.398C22.4426 11.5219 22.9249 11.6724 23.4072 11.8073C23.4758 11.8272 23.5024 11.8538 23.5024 11.9312C23.5001 13.4379 23.5156 14.9468 23.4957 16.4535C23.4736 18.073 22.9625 19.5376 21.978 20.8252C20.8806 22.2611 19.4447 23.1859 17.6881 23.6063C16.9956 23.7722 16.2898 23.8275 15.5796 23.7855C13.8915 23.6859 12.3959 23.0908 11.1171 21.9868C9.79849 20.8518 8.96661 19.4226 8.63253 17.7101C8.5374 17.2234 8.49979 16.73 8.49979 16.2344C8.49757 14.8074 8.49979 13.3826 8.49536 11.9556C8.49536 11.8604 8.52634 11.8272 8.61262 11.8007C9.533 11.5064 10.4711 11.2741 11.4202 11.1016C11.4291 11.0993 11.4379 11.1016 11.46 11.0993C11.46 11.137 11.46 11.1746 11.46 11.21C11.46 12.9998 11.4534 14.7919 11.4645 16.5818C11.4711 17.4845 11.5928 18.3761 11.9003 19.2323C12.1437 19.9115 12.5043 20.5177 13.0419 21.0089C13.5464 21.4669 14.1371 21.7567 14.7986 21.8983C15.7345 22.0996 16.6681 22.0841 17.5863 21.7943C18.6704 21.4536 19.4226 20.7323 19.9049 19.7168C20.1638 19.1748 20.3187 18.5995 20.416 18.0088C20.5244 17.3517 20.551 16.688 20.551 16.0242C20.551 14.4269 20.551 12.8273 20.551 11.2299C20.5487 11.1878 20.5487 11.148 20.5487 11.0839Z" fill="white" data-v-8aea42ef=""></path><path d="M17.3163 14.4027C16.4335 14.4027 15.5596 14.4027 14.6813 14.4027C14.6813 12.3452 14.6813 10.2898 14.6813 8.23665C14.9556 8.15036 16.7942 8.14372 17.3163 8.23001C17.3163 10.2876 17.3163 12.3452 17.3163 14.4027Z" fill="white" data-v-8aea42ef=""></path><path d="M20.5487 11.0839C21.0311 11.1901 21.4979 11.2808 21.9559 11.398C22.4426 11.5219 22.9249 11.6724 23.4072 11.8073C23.4758 11.8272 23.5024 11.8538 23.5024 11.9312C23.5001 13.4379 23.5156 14.9468 23.4957 16.4535C23.4736 18.073 22.9625 19.5376 21.978 20.8252C20.8806 22.2611 19.4447 23.1859 17.6881 23.6063C16.9956 23.7722 16.2898 23.8275 15.5796 23.7855C13.8915 23.6859 12.3959 23.0908 11.1171 21.9868C9.79849 20.8518 8.96661 19.4226 8.63253 17.7101C8.5374 17.2234 8.49979 16.73 8.49979 16.2344C8.49757 14.8074 8.49979 13.3826 8.49536 11.9556C8.49536 11.8604 8.52634 11.8272 8.61262 11.8007C9.533 11.5064 10.4711 11.2741 11.4202 11.1016C11.4291 11.0993 11.4379 11.1016 11.46 11.0993C11.46 11.137 11.46 11.1746 11.46 11.21C11.46 12.9998 11.4534 14.7919 11.4645 16.5818C11.4711 17.4845 11.5928 18.3761 11.9003 19.2323C12.1437 19.9115 12.5043 20.5177 13.0419 21.0089C13.5464 21.4669 14.1371 21.7567 14.7986 21.8983C15.7345 22.0996 16.6681 22.0841 17.5863 21.7943C18.6704 21.4536 19.4226 20.7323 19.9049 19.7168C20.1638 19.1748 20.3187 18.5995 20.416 18.0088C20.5244 17.3517 20.551 16.688 20.551 16.0242C20.551 14.4269 20.551 12.8273 20.551 11.2299C20.5487 11.1878 20.5487 11.148 20.5487 11.0839Z" fill="white" data-v-8aea42ef=""></path><path d="M17.3163 14.4027C16.4335 14.4027 15.5596 14.4027 14.6813 14.4027C14.6813 12.3452 14.6813 10.2898 14.6813 8.23665C14.9556 8.15036 16.7942 8.14372 17.3163 8.23001C17.3163 10.2876 17.3163 12.3452 17.3163 14.4027Z" fill="white" data-v-8aea42ef=""></path><path d="M20.5487 11.0839C21.0311 11.1901 21.4979 11.2808 21.9559 11.398C22.4426 11.5219 22.9249 11.6724 23.4072 11.8073C23.4758 11.8272 23.5024
+ 11.8538 23.5024 11.9312C23.5001 13.4379 23.5156 14.9468 23.4957 16.4535C23.4736 18.073 22.9625 19.5376 21.978 20.8252C20.8806 22.2611 19.4447 23.1859 17.6881 23.6063C16.9956 23.7722 16.2898 23.8275 15.5796 23.7855C13.8915 23.6859 12.3959 23.0908 11.1171 21.9868C9.79849 20.8518 8.96661 19.4226 8.63253 17.7101C8.5374 17.2234 8.49979 16.73 8.49979 16.2344C8.49757 14.8074 8.49979 13.3826 8.49536 11.9556C8.49536 11.8604 8.52634 11.8272 8.61262 11.8007C9.533 11.5064 10.4711 11.2741 11.4202 11.1016C11.4291 11.0993 11.4379 11.1016 11.46 11.0993C11.46 11.137 11.46 11.1746 11.46 11.21C11.46 12.9998 11.4534 14.7919 11.4645 16.5818C11.4711 17.4845 11.5928 18.3761 11.9003 19.2323C12.1437 19.9115 12.5043 20.5177 13.0419 21.0089C13.5464 21.4669 14.1371 21.7567 14.7986 21.8983C15.7345 22.0996 16.6681 22.0841 17.5863 21.7943C18.6704 21.4536 19.4226 20.7323 19.9049 19.7168C20.1638 19.1748 20.3187 18.5995 20.416 18.0088C20.5244 17.3517 20.551 16.688 20.551 16.0242C20.551 14.4269 20.551 12.8273 20.551 11.2299C20.5487 11.1878 20.5487 11.148 20.5487 11.0839Z" fill="white" data-v-8aea42ef=""></path><path d="M17.3163 14.4027C16.4335 14.4027 15.5596 14.4027 14.6813 14.4027C14.6813 12.3452 14.6813 10.2898 14.6813 8.23665C14.9556 8.15036 16.7942 8.14372 17.3163 8.23001C17.3163 10.2876 17.3163 12.3452 17.3163 14.4027Z" fill="white" data-v-8aea42ef=""></path><path d="M20.5487 11.0839C21.0311 11.1901 21.4979 11.2808 21.9559 11.398C22.4426 11.5219 22.9249 11.6724 23.4072 11.8073C23.4758 11.8272 23.5024 11.8538 23.5024 11.9312C23.5001 13.4379 23.5156 14.9468 23.4957 16.4535C23.4736 18.073 22.9625 19.5376 21.978 20.8252C20.8806 22.2611 19.4447 23.1859 17.6881 23.6063C16.9956 23.7722 16.2898 23.8275 15.5796 23.7855C13.8915 23.6859 12.3959 23.0908 11.1171 21.9868C9.79849 20.8518 8.96661 19.4226 8.63253 17.7101C8.5374 17.2234 8.49979 16.73 8.49979 16.2344C8.49757 14.8074 8.49979 13.3826 8.49536 11.9556C8.49536 11.8604 8.52634 11.8272 8.61262 11.8007C9.533 11.5064 10.4711 11.2741 11.4202 11.1016C11.4291 11.0993 11.4379 11.1016 11.46 11.0993C11.46 11.137 11.46 11.1746 11.46 11.21C11.46 12.9998 11.4534 14.7919 11.4645 16.5818C11.4711 17.4845 11.5928 18.3761 11.9003 19.2323C12.1437 19.9115 12.5043 20.5177 13.0419 21.0089C13.5464 21.4669 14.1371 21.7567 14.7986 21.8983C15.7345 22.0996 16.6681 22.0841 17.5863 21.7943C18.6704 21.4536 19.4226 20.7323 19.9049 19.7168C20.1638 19.1748 20.3187 18.5995 20.416 18.0088C20.5244 17.3517 20.551 16.688 20.551 16.0242C20.551 14.4269 20.551 12.8273 20.551 11.2299C20.5487 11.1878 20.5487 11.148 20.5487 11.0839Z" fill="white" data-v-8aea42ef=""></path><path d="M17.3163 14.4027C16.4335 14.4027 15.5596 14.4027 14.6813 14.4027C14.6813 12.3452 14.6813 10.2898 14.6813 8.23665C14.9556 8.15036 16.7942 8.14372 17.3163 8.23001C17.3163 10.2876 17.3163 12.3452 17.3163 14.4027Z" fill="white" data-v-8aea42ef=""></path><path d="M136.192 9.43597C133.804 9.43597 132 10.4097 131.101 11.8772C130.195 10.4097 128.22 9.43597 126.161 9.43597C122.114 9.43597 120.049 11.9938 120.049 15.1688V22.7806H123.829V15.7037C123.829 14.1951 124.631 12.851 126.456 12.851C128.288 12.851 129.235 14.1333 129.235 15.6488V22.7806H133.029V15.6488C133.029 14.1265 133.921 12.851 135.739 12.851C137.571 12.851 138.421 14.1951 138.421 15.7037V22.7806H142.202V15.1688C142.195 11.9938 140.246 9.43597 136.192 9.43597Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M159.051 18.1861V9.6897H155.312L155.34 11.7538C154.523 10.54 153.096 9.43597 150.558 9.43597C146.194 9.43597 143.951 12.8236 143.951 16.2249C143.869 19.6673 146.407 23.0892 150.373 23.0892C152.472 23.0892 154.393 22.1566 155.312 20.5177C155.683 21.6011 156.623 22.7875 158.571 22.7875H160.732V19.6125H160.128C159.374 19.6125 159.051 19.3313 159.051 18.1861ZM151.347 19.8113C149.199 19.8113 147.594 18.3301 147.594 16.2523C147.594 14.2019 149.199 12.7481 151.347 12.7481C153.563 12.7481 155.168 14.2019 155.168 16.2523C155.168 18.3301 153.563 19.8113 151.347 19.8113Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M163.14 14.1539V22.7806H166.92V16.9929C166.92 14.7505 168.546 13.3104 170.618
+ 13.3104H173.088V9.41537H171.236C168.951 9.41537 167.284 11.3629 166.92 12.4944V12.0966V9.68282H163.14V14.1539Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M175.325 22.7806H179.105V16.3688L184.978 22.7806H189.437L183.352 16.0534L188.971 9.68967H184.525L179.105 15.8271V5.6369H175.325V22.7806Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M193.862 17.2604C193.862 18.7004 194.61 20.1542 197.025 20.1542C199.241 20.1542 199.563 18.8239 199.563 18.8239H203.714C203.714 18.8239 203.33 23.0892 197.025 23.0892C192.634 23.0892 189.883 20.6342 189.883 16.2523C189.883 11.8635 192.634 9.43597 196.984 9.43597C201.272 9.43597 204.037 11.8635 204.037 16.2523C204.037 16.7323 203.954 17.2672 203.954 17.2672H193.862V17.2604ZM193.91 14.9562H199.996C199.996 13.8865 199.378 12.371 196.977 12.371C194.61 12.371 193.91 13.8933 193.91 14.9562Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M212.661 19.4959C211.364 19.4959 210.897 18.9198 210.897 17.0957V12.4807H214.993V9.44281H210.897V6.83011H208.853L205.21 10.3137V12.4875H207.117V17.5963C207.117 21.2651 208.908 22.808 212.661 22.808H215V19.5027H212.661V19.4959Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M83.6802 16.4854C83.6802 18.5564 82.507 19.5164 80.7644 19.5164C79.0218 19.5164 77.8898 18.577 77.8898 16.4854V9.64166H74.1301V16.6157C74.1301 21.1622 77.9309 22.9383 80.7918 22.9383C83.6527 22.9383 87.4604 21.1554 87.4604 16.6157V9.64166H83.7007L83.6802 16.4854Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M70.9468 12.8167V9.64166H58.728V12.8167H65.966L58.4398 19.5233V22.6983H71.4133V19.5233H63.4344L70.9468 12.8167Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M106.286 9.39484C103.905 9.39484 102.108 10.3617 101.216 11.8361C100.31 10.3617 98.3414 9.39484 96.2969 9.39484C92.2766 9.39484 90.1841 11.9527 90.1841 15.1208V22.6983H93.9437V15.6489C93.9437 14.1334 94.7395 12.803 96.5645 12.803C96.935 12.7824 97.3054 12.8373 97.6553 12.9676C98.0052 13.0979 98.3208 13.3036 98.5815 13.571C98.8422 13.8316 99.048 14.1539 99.1784 14.5037C99.3088 14.8534 99.3636 15.2237 99.3431 15.594V22.6983H103.103V15.594C103.103 14.0785 103.995 12.803 105.799 12.803C107.603 12.803 108.475 14.1334 108.475 15.6489V22.6983H112.234V15.1277C112.234 11.9664 110.293 9.40169 106.252 9.40169L106.286 9.39484Z" fill="#7000FF" data-v-8aea42ef=""></path><path d="M52.1966 16.4854C52.1966 18.5564 51.0235 19.5164 49.2946 19.5164C47.5657 19.5164 46.4062 18.577 46.4062 16.4854V9.64166H42.6466V16.6157C42.6466 21.1622 46.4337 22.9383 49.3083 22.9383C52.1829 22.9383 55.9631 21.1554 55.9631 16.6157V9.64166H52.2035L52.1966 16.4854Z" fill="#7000FF" data-v-8aea42ef=""></path></svg>
+                </div>
+                <button class="flex w-[120px] h-[40px] items-center gap-1 px-2 pl-5 py-1.5 bg-[#f1ecff] text-sm text-purple-600 font-medium rounded-[5px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                  <p class="text-[14px] text-center">Katalog</p>
+                </button>
+              </div>
+          
+        
+              <div class="flex flex-1 items-center bg-white relative border border-gray-300 rounded-[7px] overflow-hidden h-[42px]">
+                <input
+                type="text"
+                  placeholder="Mahsulotlar va turkumlar izlash"
+                  class="flex-1 px-4 text-sm text-[#8d8d8d] placeholder:text-[#8d8d8d] focus:outline-none"
+                />
+                <button class="bg-[#f1f3f5] rounded-[7px]   px-4 h-[34px] absolute right-1 w-[70px] flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-[18px] h-[18px]  text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z" />
+                  </svg>
+                </button>
+
+              </div>
+          
+              
+              <div class="flex items-center gap-5 text-sm whitespace-nowrap">
+        
+                <div class="flex items-center gap-1 text-gray-800 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4.992 4.992 0 016 16c0-1.657 1.343-3 3-3h6a3 3 0 013 3c0 .764-.29 1.457-.764 1.983M12 12a4 4 0 100-8 4 4 0 000 8z" />
+                  </svg>
+                  <span>Kirish</span>
+                </div>
+          
+                <div class="flex items-center gap-1  text-gray-800 cursor-pointer sm:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" width="24" data-v-7ea2d6f5=""><path d="M1.5 7.608A4.606 4.606 0 0 1 6.108 3C8.093 3 9.384 4.254 10 5.04 10.616 4.254 11.907 3 13.892 3A4.606 4.606 0 0 1 18.5 7.608c0 3.892-5.496 8.042-8.17 10.268a.5.5 0 0 1-.66 0C6.983 15.65 1.5 11.5 1.5 7.608ZM6.108 4A3.606 3.606 0 0 0 2.5 7.608c0 3.292 5.2 7.389 7.5 9.235C12.3 15 17.5 10.9 17.5 7.608A3.606 3.606 0 0 0 13.892 4c-1.955 0-3.098 1.59-3.393 2.066a.588.588 0 0 1-.998 0C9.206 5.59 8.063 4 6.108 4Z"></path></svg>
+                  <span>Saralangan</span>
+                </div>
+          
+              
+                <div class="relative flex items-center gap-1 text-gray-800 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.293 1.293a1 1 0 001.414 1.414L8 15m0 0l1 1m5 0l1-1m0 0l1.293 1.293a1 1 0 001.414-1.414L17 13" />
+                  </svg>
+                  <span>Savat</span>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <div class="w-[1240px] flex items-center text-[14px] mx-auto mt-[20px]">
+    <a class="flex items-center gap-[5px]" href="#"><img src="https://static.uzum.uz/fast_categories/Topsales.png" alt="logo" width="24" height="24"> Hafta tovarlari</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Elektronika</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Maishiy texnika</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Kiyim</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Poyabzallar</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Aksessuarlar</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Go'zallik va parvarish</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Salomatlik</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Uy ro'zg'or buyumlari</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:border-b-[2px] border-[#000] hover:text-[#000]" href="#">Qurilish va ta'mirlash</a>
+    <a class=" ml-[20px] text-[#999] pb-1 hover:text-[#000]" href="#">Yana <i class="fa-solid fa-chevron-down"></i></a></a>
+</div>
+
+          
+    </div>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const trigger   = document.getElementById('cityTrigger');  
+          const modal     = document.getElementById('cityModal');     
+          const closeBtn  = document.getElementById('closeCityModal');
+          const citySpan  = document.getElementById('currentCity');   
+        
+          trigger.addEventListener('click', () => modal.classList.remove('hidden'));
+    
+        
+          closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+          });
+      
+        
+          document.querySelectorAll('.city-item').forEach(item => {
+            item.addEventListener('click', () => {
+              citySpan.textContent = item.textContent.trim(); 
+              modal.classList.add('hidden');                 
+            });
+          });
+        });
+      </script>
+
+  <script>
+    
+      function toggleDropdown() {
+        document.getElementById("langMenu").classList.toggle("hidden");
+      }
+
+      function selectLang(lang) {
+        const flagIcon = document.getElementById("flagIcon");
+        const langText = document.getElementById("langText");
+    
+        if (lang === "ru") {
+          flagIcon.src = "https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg";
+          langText.textContent = "Русский";
+        } else {
+          flagIcon.src = "https://upload.wikimedia.org/wikipedia/commons/8/84/Flag_of_Uzbekistan.svg";
+          langText.textContent = "O'zbekcha";
+        }
+    
+
+        document.getElementById("langMenu").classList.add("hidden");
+      }
+    
+      window.addEventListener("click", function (e) {
+        const langDropdown = document.getElementById("languageDropdown");
+        if (!langDropdown.contains(e.target)) {
+          document.getElementById("langMenu").classList.add("hidden");
+        }
+      });
+    </script>
